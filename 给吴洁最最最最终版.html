@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可爱小狗互动</title>
+    <style>
+        body {
+            background-color: #fdf0d5;
+            text-align: center;
+            font-family: "Arial", sans-serif;
+        }
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #dog {
+            width: 200px;
+            height: 200px;
+            cursor: pointer;
+        }
+        .dialogue {
+            display: none;
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            margin-top: 20px;
+            width: 250px;
+        }
+        .buttons {
+            margin-top: 10px;
+        }
+        .btn {
+            padding: 8px 16px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn-yes {
+            background-color: #ffcc00;
+        }
+        .btn-no {
+            background-color: #ff6666;
+            color: white;
+        }
+        #final-screen {
+            display: none;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6600;
+            margin-top: 20px;
+        }
+        #final-img {
+            display: none;
+            width: 250px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img id="dog" src="https://g.us.sinaimg.cn/o0/vMSiJ0q7lx08jWxCjeMU0104120001l90E010.mp4?label=gif_mp4&template=240x240.28.0&ssig=i7l6YqLsbJ&Expires=1740236305&KID=unistore,video" alt="小狗">
+        <div id="dialogue" class="dialogue">
+            <p id="question">可以跟我一起玩吗？</p>
+            <div class="buttons">
+                <button class="btn btn-yes" onclick="chooseYes()">愿意</button>
+                <button class="btn btn-no" onclick="chooseNo()">不要</button>
+            </div>
+        </div>
+        <div id="final-screen">耶！我们是最好的朋友啦！</div>
+        <img id="final-img" src="https://g.us.sinaimg.cn/o0/WR96Y8zglx08khui4AVi0104120004LU0E010.mp4?label=gif_mp4&template=240x240.28.0&ssig=Gc4Z7KxrVU&Expires=1740236632&KID=unistore,video" alt="最终小狗">
+    </div>
+
+    <script>
+        let yesCount = 0;  
+        const questions = [
+            "可以跟我一起玩吗？",
+            "真的愿意吗？",
+            "不会后悔吗？",
+            "真的真的愿意吗？",
+            "好开心！你是最好的朋友！"
+        ];
+
+        document.getElementById("dog").addEventListener("click", function() {
+            document.getElementById("dialogue").style.display = "block";
+        });
+
+        function chooseYes() {
+            yesCount++;
+            if (yesCount >= questions.length) {
+                document.getElementById("dialogue").style.display = "none";
+                document.getElementById("final-screen").style.display = "block";
+                document.getElementById("final-img").style.display = "block";
+            } else {
+                document.getElementById("question").textContent = questions[yesCount];
+            }
+        }
+
+        function chooseNo() {
+            document.getElementById("question").textContent = "求求啦~再考虑一下嘛~";
+        }
+    </script>
+
+</body>
+</html>
